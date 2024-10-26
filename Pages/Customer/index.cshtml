@@ -1,0 +1,50 @@
+﻿@page
+@model ASP2.Pages.Customer.indexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-center mb-10" >List of Cars</h2>
+
+<a href="/Customer/Create">new Car</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Car ID</th>
+            <th>Name</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>License Plate</th>
+            <th>Seats</th>
+            <th>Transmission</th>
+            <th>Price Per Day</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.CarList != null && Model.CarList.Count > 0)
+        {
+            foreach (var car in Model.CarList)
+            {
+                <tr>
+                    <td>@car.Car_id</td>
+                    <td>@car.name</td>
+                    <td>@car.model</td>
+                    <td>@car.year</td>
+                    <td>@car.license_plate</td>
+                    <td>@car.number_of_car_seats</td>
+                    <td>@car.transmission</td>
+                    <td>@car.price_per_day.ToString("C")</td>
+                    <td>@(car.status ? "Available" : "Not Available")</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9" class="text-center">No cars found</td>
+            </tr>
+        }
+    </tbody>
+</table>
