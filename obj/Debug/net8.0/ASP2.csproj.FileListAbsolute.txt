@@ -66,3 +66,4 @@ D:\ITDIV\MiniProject\ASP2\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Dat
 D:\ITDIV\MiniProject\ASP2\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
 D:\ITDIV\MiniProject\ASP2\obj\Debug\net8.0\ASP2.csproj.AssemblyReference.cache
 D:\ITDIV\MiniProject\ASP2\obj\Debug\net8.0\ASP2.csproj.Up2Date
+D:\ITDIV\MiniProject\ASP2\obj\Debug\net8.0\ASP2.sourcelink.json

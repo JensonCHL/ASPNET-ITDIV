@@ -4,47 +4,51 @@
     ViewData["Title"] = "Index";
 }
 
-<h2 class="text-center mb-10" >List of Cars</h2>
+<!-- Navigation Bar with Hamburger Menu -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">RentCar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Customer/RentalHistory">Riwayat Penyewaan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Contact">Kontak Kami</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="btn btn-outline-primary mr-2" href="/Account/Login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary" href="/Account/Register">Register</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-<a href="/Customer/Create">new Car</a>
-
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Car ID</th>
-            <th>Name</th>
-            <th>Model</th>
-            <th>Year</th>
-            <th>License Plate</th>
-            <th>Seats</th>
-            <th>Transmission</th>
-            <th>Price Per Day</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.CarList != null && Model.CarList.Count > 0)
-        {
-            foreach (var car in Model.CarList)
-            {
-                <tr>
-                    <td>@car.Car_id</td>
-                    <td>@car.name</td>
-                    <td>@car.model</td>
-                    <td>@car.year</td>
-                    <td>@car.license_plate</td>
-                    <td>@car.number_of_car_seats</td>
-                    <td>@car.transmission</td>
-                    <td>@car.price_per_day.ToString("C")</td>
-                    <td>@(car.status ? "Available" : "Not Available")</td>
-                </tr>
-            }
-        }
-        else
-        {
-            <tr>
-                <td colspan="9" class="text-center">No cars found</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<!-- Search Section -->
+@* <div class="container mt-4">
+    <h2 class="text-center">Search for Available Cars</h2>
+    <form method="get" action="/SearchResults">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="startDate">Start Date:</label>
+                <input type="date" class="form-control" id="startDate" name="startDate" required>
+            </div>
+            <div class="col-md-4">
+                <label for="endDate">End Date:</label>
+                <input type="date" class="form-control" id="endDate" name="endDate" required>
+            </div>
+            <div class="col-md-4 align-self-end">
+                <button type="submit" class="btn btn-success btn-block">Search</button>
+            </div>
+        </div>
+    </form>
+</div> *@

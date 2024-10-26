@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,32 +8,67 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ASP2.styles.css" asp-append-version="true" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <style>
+        /* Custom styles for the dropdown */
+        .dropdown-menu {
+            background-color: maroon;
+            /* Maroon background for dropdown */
+            color: white;
+            /* White text color */
+        }
+
+        .dropdown-item {
+            color: white;
+            /* White text color for dropdown items */
+        }
+
+        .dropdown-item:hover {
+            background-color: darkred;
+            /* Dark red on hover */
+        }
+
+        .close-dropdown {
+            color: white;
+            /* Close button color */
+            cursor: pointer;
+            /* Cursor pointer for the close button */
+            font-weight: bold;
+            /* Make the close button bold */
+        }
+    </style>
 </head>
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">ASP2</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                <div class="dropdown">
+                    <button class="navbar-toggler" type="button" id="burgerMenu" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <span class="navbar-brand ms-2">Rent Car</span>
+                    <ul class="dropdown-menu" aria-labelledby="burgerMenu">
+                        <li class="d-flex justify-content-between align-items-center">
+                            <span class="close-dropdown" onclick="closeDropdown()">&times;</span>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Customer/Index">Customer</a>
-                        </li>
+                        <li><a class="dropdown-item" asp-area="" asp-page="/Index">Home</a></li>
+                        <li><a class="dropdown-item" asp-area="" asp-page="/Customer/Index">Riwayat Penyewaan</a></li>
+                        <li><a class="dropdown-item" asp-area="" asp-page="/Contact">Kontak Kami</a></li>
                     </ul>
+
+                </div>
+                <div class="ms-auto">
+                    <a class="btn btn-outline-primary me-2" asp-area="" asp-page="/Account/Login">Login</a>
+                    <a class="btn btn-primary" asp-area="" asp-page="/Account/Register">Register</a>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -41,7 +77,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - ASP2 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2024 - RentCar - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 
@@ -49,6 +85,21 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
+    <script>
+        // This function closes the dropdown by removing the 'show' class
+        function closeDropdown() {
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            dropdownMenu.classList.remove('show'); // Hide the dropdown
+        }
+
+        // Add event listener to close the dropdown when the menu is opened
+        document.getElementById('burgerMenu').addEventListener('click', function () {
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            dropdownMenu.classList.toggle('show'); // Toggle the dropdown
+        });
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

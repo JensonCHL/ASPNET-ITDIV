@@ -4,7 +4,53 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h2 class="text-center mb-3">Selamat Datang di Rental Mobil Kami</h2>
+
+<div class="container">
+    <form method="post">
+        <div class="row mb-3">
+            <div class="col">
+                <label for="pickupDate" class="form-label">Pickup Date</label>
+                <input type="date" class="form-control" id="pickupDate" name="pickupDate" required />
+            </div>
+            <div class="col">
+                <label for="returnDate" class="form-label">Return Date</label>
+                <input type="date" class="form-control" id="returnDate" name="returnDate" required />
+            </div>
+            <div class="col">
+                <label for="year" class="form-label">Tahun Pembuatan</label>
+                <select class="form-select" id="year" name="year">
+                    <option selected value="">Semua Tahun</option>
+                    @for (int i = DateTime.Now.Year; i >= 1900; i--)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Cari</button>
+    </form>
+
+    <div class="row mt-4">
+        @if (Model.CarList != null && Model.CarList.Count > 0)
+        {
+            foreach (var car in Model.CarList)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="@car.image_link" class="card-img-top" alt="@car.name" />
+                        <div class="card-body">
+                            <h5 class="card-title">@car.name</h5>
+                            <p class="card-text">Tahun: @car.year</p>
+                            <p class="card-text">Harga per Hari: @car.price_per_day.ToString("C")</p>
+                            <a href="/Customer/Rent?carId=@car.Car_id" class="btn btn-primary">Sewa Sekarang</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-center">Tidak ada mobil yang tersedia.</p>
+        }
 </div>
